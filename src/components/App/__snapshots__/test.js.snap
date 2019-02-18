@@ -1,0 +1,202 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App Has a vaild Snapshot 1`] = `
+<div
+  className="page"
+>
+  <h2>
+    Welcome to the Road to learn React!!
+  </h2>
+  <div
+    className="interactions"
+  >
+    <form
+      onSubmit={[Function]}
+    >
+      <input
+        onChange={[Function]}
+        type="text"
+        value="react"
+      />
+      <button
+        type="submit"
+      >
+        Search
+      </button>
+    </form>
+  </div>
+  <div
+    className="table"
+  />
+  <div
+    className="interactions"
+  >
+    <button
+      className=""
+      onClick={[Function]}
+      type="button"
+    >
+      More ...
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Button has a vaild Snapshot 1`] = `
+<button
+  className=""
+  type="button"
+>
+  Give Me More
+</button>
+`;
+
+exports[`Search Has a vaild Snapshot 1`] = `
+<form>
+  <input
+    type="text"
+  />
+  <button
+    type="submit"
+  >
+    Search
+  </button>
+</form>
+`;
+
+exports[`Table Has a vaild Snapshot 1`] = `
+<div
+  className="table"
+>
+  <div
+    className="table-row"
+  >
+    <span
+      style={
+        Object {
+          "width": "55%",
+        }
+      }
+    >
+      <a>
+        1
+      </a>
+    </span>
+    <span
+      style={
+        Object {
+          "width": "20%",
+        }
+      }
+    />
+    <span
+      style={
+        Object {
+          "width": "10%",
+        }
+      }
+    >
+      1
+    </span>
+    <span
+      style={
+        Object {
+          "width": "5%",
+        }
+      }
+    >
+      1
+    </span>
+    <span
+      style={
+        Object {
+          "width": "5%",
+        }
+      }
+    >
+      2
+    </span>
+    <span
+      style={
+        Object {
+          "width": "5%",
+        }
+      }
+    >
+      <button
+        className="button-inline"
+        onClick={[Function]}
+        type="button"
+      >
+        Dismiss
+      </button>
+    </span>
+    <hr />
+  </div>
+  <div
+    className="table-row"
+  >
+    <span
+      style={
+        Object {
+          "width": "55%",
+        }
+      }
+    >
+      <a>
+        2
+      </a>
+    </span>
+    <span
+      style={
+        Object {
+          "width": "20%",
+        }
+      }
+    />
+    <span
+      style={
+        Object {
+          "width": "10%",
+        }
+      }
+    >
+      2
+    </span>
+    <span
+      style={
+        Object {
+          "width": "5%",
+        }
+      }
+    >
+      1
+    </span>
+    <span
+      style={
+        Object {
+          "width": "5%",
+        }
+      }
+    >
+      2
+    </span>
+    <span
+      style={
+        Object {
+          "width": "5%",
+        }
+      }
+    >
+      <button
+        className="button-inline"
+        onClick={[Function]}
+        type="button"
+      >
+        Dismiss
+      </button>
+    </span>
+    <hr />
+  </div>
+</div>
+`;
