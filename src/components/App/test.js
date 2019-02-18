@@ -1,12 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import renderer from "react-test-renderer";
+import Enzyme, { shallow } from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
 
 import App from "./index";
-
 import Button from "../Button";
 import Search from "../Search";
 import Table from "../Table";
+
+Enzyme.configure({ adapter: new Adapter() });
 
 describe("App", () => {
   it("renders without crashing", () => {
@@ -48,6 +51,11 @@ describe("Button", () => {
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
+
+  it("render children when pass in", () => {
+    const element = shallow(<Button>More</Button>);
+    expect(element.contains("More")).toBe(true);
+  });
 });
 
 describe("Table", () => {
@@ -67,5 +75,10 @@ describe("Table", () => {
     const component = renderer.create(<Table {...props} />);
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
+  });
+
+  it("shows two itmes in the list", () => {
+    const element = shallow(<Table {...props} />);
+    expect(element.find(".table-row").length).toBe(2);
   });
 });

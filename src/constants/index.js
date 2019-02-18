@@ -2,7 +2,7 @@
 
 export const DEFAULT_QUERY = "react";
 export const DEFAULT_HPP = "25";
-export const DEFAULT_TAG = "(story,poll)";
+export const DEFAULT_TAG = "story";
 
 export const PATH_BASE = "https://hn.algolia.com/api/v1";
 export const PATH_SEARCH = "/search_by_date";
