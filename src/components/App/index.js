@@ -102,8 +102,6 @@ class App extends Component {
       PARAM_HPP +
       DEFAULT_HPP;
 
-    // console.log(url);
-
     axios(url)
       .then(result => this._isMounted && this.setSearchTopStories(result.data))
       .catch(error => this._isMounted && this.setState({ error }));
