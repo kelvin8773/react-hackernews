@@ -19,10 +19,28 @@ import Search from "../Search";
 import Table from "../Table";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faSearch,
+  faSpinner,
+  faAngleUp,
+  faAngleDown
+} from "@fortawesome/free-solid-svg-icons";
 
-library.add(faSpinner);
+library.add(faSearch, faSpinner, faAngleUp, faAngleDown);
+
+const updateSearchTopStoriesState = (hits, page) => prevState => {
+  const { searchKey, results } = prevState;
+  const oldHits = results && results[searchKey] ? results[searchKey].hits : [];
+  const updatedHits = [...oldHits, ...hits];
+  return {
+    results: {
+      ...results,
+      [searchKey]: { hits: updatedHits, page }
+    },
+    isLoading: false
+  };
+};
 
 class App extends Component {
   _isMounted = false;
@@ -30,13 +48,12 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      message: "Welcome to the Road to learn React!!",
+      message: "Start to Search for the Latest Hacker News Now!!!",
       results: null,
       searchKey: "",
       searchTerm: DEFAULT_QUERY,
       error: null,
-      isLoading: false,
-      sortKey: "NONE"
+      isLoading: false
     };
 
     this.needsToSearchTopStories = this.needsToSearchTopStories.bind(this);
@@ -45,7 +62,6 @@ class App extends Component {
     this.onSearchChange = this.onSearchChange.bind(this);
     this.onSearchSubmit = this.onSearchSubmit.bind(this);
     this.onDismiss = this.onDismiss.bind(this);
-    this.onSort = this.onSort.bind(this);
   }
 
   componentDidMount() {
@@ -59,24 +75,13 @@ class App extends Component {
     this._isMounted = false;
   }
 
-  onSort(sortKey) {
-    this.setState({ sortKey });
-  }
-
   needsToSearchTopStories(searchTerm) {
     return !this.state.results[searchTerm];
   }
 
   setSearchTopStories(result) {
     const { hits, page } = result;
-    const { searchKey, results } = this.state;
-    const oldHits =
-      results && results[searchKey] ? results[searchKey].hits : [];
-    const updatedHits = [...oldHits, ...hits];
-    this.setState({
-      results: { ...results, [searchKey]: { hits: updatedHits, page } },
-      isLoading: false
-    });
+    this.setState(updateSearchTopStoriesState(hits, page));
   }
 
   fetchSearchTopStories(searchTerm, page = 0) {
@@ -142,8 +147,7 @@ class App extends Component {
       results,
       searchKey,
       error,
-      isLoading,
-      sortKey
+      isLoading
     } = this.state;
     const page =
       (results && results[searchKey] && results[searchKey].page) || 0;
@@ -152,7 +156,9 @@ class App extends Component {
 
     return (
       <div className="page">
-        <h2>{message}</h2>
+        <div className="div">
+          <h2>{message}</h2>
+        </div>
 
         <div className="interactions">
           <Search
@@ -160,20 +166,16 @@ class App extends Component {
             onChange={this.onSearchChange}
             onSubmit={this.onSearchSubmit}
           >
-            Search
+            <FontAwesomeIcon icon="search" /> Search
           </Search>
         </div>
+
         {error ? (
           <div className="interactions">
             <p>Something went wrong!</p>
           </div>
         ) : (
-          <Table
-            list={list}
-            sortKey={sortKey}
-            onSort={this.onSort}
-            onDismiss={this.onDismiss}
-          />
+          <Table list={list} onDismiss={this.onDismiss} />
         )}
 
         <div className="interactions">

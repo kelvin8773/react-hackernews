@@ -26,7 +26,7 @@ class Search extends Component {
 }
 
 Search.propTypes = {
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   onChange: PropTypes.func,
   onSubmit: PropTypes.func,
   children: PropTypes.string
